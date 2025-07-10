@@ -1,62 +1,25 @@
-const usuarios = {};
+const usuario = {}
+function Registrar() {
+    const setUsuariosInteresses = new Custom();
+    const nome = document.getElementById('nomeUsuario').value;
+    const checkboxes = document.querySelectorAll('input[name="interesse"]:checked')
 
-// Função: Cadastrar novo usuário
-function cadastrarUsuario(nome, interessesStr) {
-  const novoSet = new Custom();
-  const interesses = interessesStr.split(',').map(i => i.trim().toLowerCase());
-  interesses.forEach(interesse => novoSet.add(interesse));
-  usuarios[nome] = novoSet;
-}
-
-// a. Interesses em comum
-function interessesEmComum(usuario1, usuario2) {
-  if (!usuarios[usuario1] || !usuarios[usuario2]) return null;
-  return usuarios[usuario1].intersection(usuarios[usuario2]).values();
-}
-
-// b. União de interesses
-function unirInteresses(usuario1, usuario2) {
-  if (!usuarios[usuario1] || !usuarios[usuario2]) return null;
-  return usuarios[usuario1].union(usuarios[usuario2]).values();
-}
-
-// c. Sugerir novos interesses
-function sugerirInteresses(usuarioAlvo) {
-  if (!usuarios[usuarioAlvo]) return null;
-  const sugestoes = new Custom();
-  const interessesAlvo = usuarios[usuarioAlvo];
-
-  for (const nome in usuarios) {
-    if (nome !== usuarioAlvo) {
-      const outrosInteresses = usuarios[nome];
-      const novos = outrosInteresses.diference(interessesAlvo);
-      novos.values().forEach(i => sugestoes.add(i));
+    if (!nome || checkboxes.length == 0) {
+        alert("dados invalidos, tente novamente");
+    } else {
+        checkboxes.forEach(checkbox => setUsuariosInteresses.add(checkbox.value));
+        usuario[nome] = setUsuariosInteresses;
+      document.getElementById('saidaCadastro').innerText =`cadastro salvo ${nome} interessado em ${setUsuariosInteresses.values().join('.')}`
     }
-  }
-
-  return sugestoes.values();
 }
+function mostrarUniao() {
+const u1 = document.getElementById('userUni1').value
+const u2 = document.getElementById('userUni2').value
 
-// d. Filtrar usuários por interesse
-function usuariosComInteresse(interesseBuscado) {
-  interesseBuscado = interesseBuscado.trim().toLowerCase();
-  const resultado = [];
-
-  for (const nome in usuarios) {
-    if (usuarios[nome].has(interesseBuscado)) {
-      resultado.push(nome);
-    }
-  }
-
-  return resultado;
+if (!usuario[u1] || !usuario[u2]) {
+    alert('coloque um usuario por favor.')
+} else {
+    const uniao = usuario[u1].union(usuario[u2]).values()
+    document.getElementById('saidaUniao').innerText = `interesses em comum entre ${u1} e ${u2}  ${uniao.join(',')}`
 }
-
-// Exemplo de uso:
-cadastrarUsuario('Mateus', 'programação, ia, startups');
-cadastrarUsuario('Ana', 'ia, ux, startups');
-cadastrarUsuario('Lucas', 'programação, jogos');
-
-console.log('Interesses em comum entre Mateus e Ana:', interessesEmComum('Mateus', 'Ana'));
-console.log('União entre Mateus e Lucas:', unirInteresses('Mateus', 'Lucas'));
-console.log('Sugestões para Lucas:', sugerirInteresses('Lucas'));
-console.log('Usuários com interesse em "startups":', usuariosComInteresse('startups'));
+}
