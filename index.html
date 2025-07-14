@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <title>UNIEVENTOS</title>
+</head>
+<body>
+  <header>
+  <h1> <i class="fa-solid fa-code"></i>  UniEventos  <i class="fa-solid fa-code"></i> </h1>
+  </header>
+
+  <!-- CADASTRO -->
+   <div class="descrever">
+   <p1><strong>💻 Bem-vindo ao UniEventos!</strong><br> 
+O UniEventos é uma plataforma feita para você, universitário apaixonado por tecnologia, 
+inovação e criatividade. Aqui, você poderá se cadastrar em eventos acadêmicos e indicar 
+seus principais interesses — como Programação, Startups, Inteligência Artificial, UX e Jogos.
+Nosso sistema cruza essas informações para sugerir conexões com outros participantes que 
+compartilham os mesmos temas e para recomendar atividades que combinem com o seu perfil.</p1>
+    </div>
+   <div id="caixa">
+  <h3>1. Cadastrar Usuário</h3><br>
+  <p>👤. Cadastre-se com seu nome e seus interesses no evento.</p>
+  <input type="text" id="nomeUsuario" placeholder="Nome do usuário"><br>
+  <label><input type="checkbox" name="interesse" value="programação"> Programação</label><br>
+  <label><input type="checkbox" name="interesse" value="startups"> Startups</label><br>
+  <label><input type="checkbox" name="interesse" value="ia"> Inteligência Artificial</label><br>
+  <label><input type="checkbox" name="interesse" value="ux"> UX</label><br>
+  <label><input type="checkbox" name="interesse" value="jogos"> Jogos</label><br><br>
+  <button onclick="Registrar()">Cadastrar</button>
+  </div>
+  <div id="saidaCadastro"></div>
+  <hr>
+   
+
+  <!-- INTERESSES EM COMUM -->
+   <div id="caixa1">
+  <h3>2. Interesses em comum entre dois usuários</h3>
+  <input type="text" id="user1" placeholder="Usuário 1">
+  <input type="text" id="user2" placeholder="Usuário 2">
+  <button onclick="mostrarComum()">Comparar</button>
+  </div>
+  <div id="saidaComum"></div>
+  <hr>
+  
+
+  <!-- UNIÃO -->
+   <div id="caixa2">
+  <h3>3. União de interesses</h3>
+  <input type="text" id="userUni1" placeholder="Usuário 1">
+  <input type="text" id="userUni2" placeholder="Usuário 2">
+  <button onclick="mostrarUniao()">Unir</button>
+  </div>
+  <div id="saidaUniao"></div>
+  <hr>
+
+  <!-- SUGESTÕES -->
+   <div id="caixa3">
+  <h3>4. Sugerir novos interesses</h3>
+  <input type="text" id="userSugestao" placeholder="Usuário alvo">
+  <button onclick="mostrarSugestoes()">Sugerir</button>
+  </div>
+  <div id="saidaSugestoes"></div>
+  <hr>
+
+  <!-- BUSCAR USUÁRIOS POR INTERESSE -->
+   <div id="caixa4">
+  <h3>5. Buscar usuários por interesse</h3>
+  <input type="text" id="interesseBusca" placeholder="Interesse (ex: ia)">
+  <button onclick="buscarUsuariosPorInteresse()">Buscar</button>
+  </div>
+  <div id="saidaBusca"></div>
+  <hr>
+
+</body>
+</html>
